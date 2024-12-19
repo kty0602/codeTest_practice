@@ -28,7 +28,7 @@ public class n120817 {
         System.out.println("배열 값을 하나씩 입력하세요. 입력을 종료하려면 '!'를 입력하세요.");
         while (true) {
             System.out.print(y+"번째 값 : ");
-            String input = sc.next();
+            String input = sc.nextLine();
             if (input.equals("!")) {
                 break;
             }
