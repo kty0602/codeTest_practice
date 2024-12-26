@@ -30,7 +30,7 @@ public class n131705 {
         ArrayList<Integer> list = new ArrayList<>();
         System.out.println("number 배열 값을 하나씩 입력하세요. 입력을 종료하려면 '!'를 입력하세요.");
         while (true) {
-            System.out.print(y + "번재 값 : ");
+            System.out.print(y + "번째 값 : ");
             String input = sc.nextLine();
             if (input.equals("!")) {
                 break;
@@ -40,7 +40,7 @@ public class n131705 {
             y++;
         }
 
-        int[] number = list.stream().mapToInt(i ->i).toArray();
+        int[] number = list.stream().mapToInt(i -> i).toArray();
 
         int answer = solution(number);
         System.out.println("답 : " + answer);
