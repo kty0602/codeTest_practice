@@ -12,43 +12,47 @@ public class n92334 {
 
     private static int[] solution(String[] id_list, String[] report, int k) {
 
+        // Set의 주요 기능 : 중복 제거 -> 동일한 신고를 여러 번 하더라도 한 번만 반영되도록
         Set<String> reportSet = new HashSet<>(Arrays.asList(report));
 
+        // 각 사용자가 신고한 사람 목록을 저장하는 맵
         HashMap<String, Set<String>> reportMap = new HashMap<>();
         for (String id : id_list) {
             reportMap.put(id, new HashSet<>());
         }
+        // 신고자, 신고당한 사람 리스트 reportMap에 저장
         for (String repo : reportSet) {
             String[] parts = repo.split(" ");
             String reporter = parts[0];
             String reported = parts[1];
             reportMap.get(reporter).add(reported);
         }
-
+        // 신고당한 횟수를 저장할 맵 초기화
         Map<String, Integer> reportedCount = new HashMap<>();
         for (String id : id_list) {
             reportedCount.put(id, 0);
         }
+        // 각 유저가 신고당한 횟수 계산
         for (Set<String> reportedUsers : reportMap.values()) {
             for (String reported : reportedUsers) {
                 reportedCount.put(reported, reportedCount.get(reported) + 1);
             }
         }
-
+        // 정지된 유저 리스트
         Set<String> banUser = new HashSet<>();
         for (String user : id_list) {
             if (reportedCount.get(user) >= k) {
                 banUser.add(user);
             }
         }
-
+        // 알림 개수 계산
         int[] answer = new int[id_list.length];
         for (int i = 0; i < id_list.length; i++) {
-            String user = id_list[i];
-            Set<String> reportedUsers = reportMap.get(user);
+            String user = id_list[i]; // 현재 검사중인 사용자 id
+            Set<String> reportedUsers = reportMap.get(user); // 해당 사용자가 신고한 유저 리스트
             int count = 0;
             for (String reported : reportedUsers) {
-                if (banUser.contains(reported)) {
+                if (banUser.contains(reported)) {  // 신고한 유저 중 정지된 유저가 있다면 count 증가
                     count++;
                 }
             }
