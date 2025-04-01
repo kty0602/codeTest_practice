@@ -72,7 +72,7 @@ public class n92341 {
         }
 
         System.out.println("records 배열 값을 하나씩 입력하세요. 입력을 종료하려면 '!'를 입력하세요.");
-        List<String> list2 = new ArrayList<>();
+        ArrayList<String> list2 = new ArrayList<>();
         while (true) {
             System.out.print("records : ");
             String input = sc.nextLine();
