@@ -40,7 +40,6 @@ public class slidingWindow {
             // 현 queue 길이가 3이면 그 중에서 가장 큰 값 list에 추가
             if (queue.size() == k) {
                 int maxNum = Integer.MIN_VALUE;
-                List<Integer> temp = new ArrayList<>(queue);
                 for (int num : queue) {
                     maxNum = Math.max(maxNum, num);
                 }
